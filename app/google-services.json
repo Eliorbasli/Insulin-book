@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "719088843027",
+    "project_id": "insulinbook1",
+    "storage_bucket": "insulinbook1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719088843027:android:dfc6d2f2c4753cbce502e6",
+        "android_client_info": {
+          "package_name": "dev.eliorba.insulinbook1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719088843027-6h10v3joiolp7bijtc7fs491urlbceec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dev.eliorba.insulinbook1",
+            "certificate_hash": "9587e7899ee9cf59a9c8e87ccb2dbd1e7c10ca3c"
+          }
+        },
+        {
+          "client_id": "719088843027-thq3lf5i4leq2j1q34h1iakieo1ktsje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-lsighAjHZiCNuc1LV_jXeozVKgyLBRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719088843027-thq3lf5i4leq2j1q34h1iakieo1ktsje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
