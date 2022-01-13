@@ -52,18 +52,18 @@
             android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/RC_items"
             android:background="#6FF9FF"
-            android:text="userName"
-            android:layout_below="@id/RC_items" />
+            android:text="userName" />
 
 
         <TextView
             android:id="@+id/userEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/userName"
             android:layout_marginTop="28dp"
             android:text="userEmail"
-            android:layout_below="@+id/userName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintTop_toBottomOf="@+id/userName" />
@@ -72,7 +72,7 @@
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="Logout"
             android:layout_below="@+id/userEmail"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +81,19 @@
             app:layout_constraintTop_toBottomOf="@+id/userEmail"
             app:layout_constraintVertical_bias="0.35"
             />
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnLogout"
+            android:text="ADD"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userEmail"
+            app:layout_constraintVertical_bias="0.35" />
 
 
     </RelativeLayout>

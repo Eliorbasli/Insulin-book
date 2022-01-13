@@ -10,10 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InsulinBook1">
         <activity
-            android:name=".check1"
-            android:exported="false"
-            android:label="@string/title_activity_check1"
-            android:theme="@style/Theme.InsulinBook1.NoActionBar" />
+            android:name=".NewRecordActivity"
+            android:exported="false" />
         <activity
             android:name=".User_profile_Activity"
             android:exported="false" />

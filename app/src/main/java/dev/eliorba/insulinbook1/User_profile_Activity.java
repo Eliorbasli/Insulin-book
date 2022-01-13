@@ -19,6 +19,7 @@ public class User_profile_Activity extends AppCompatActivity {
     TextView    tvUserEmail;
     ImageView   userImageView;
     Button      btnSignOut;
+    Button btnAdd;
 
     FirebaseAuth mAuth;
 
@@ -26,12 +27,14 @@ public class User_profile_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        getSupportActionBar().hide();
 
 
         tvUserName = findViewById(R.id.userName);
         tvUserEmail = findViewById(R.id.userEmail);
         userImageView = findViewById(R.id.userImage);
         btnSignOut = findViewById(R.id.btnLogout);
+        btnAdd = findViewById(R.id.btnAdd);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -49,6 +52,12 @@ public class User_profile_Activity extends AppCompatActivity {
         btnSignOut.setOnClickListener(view -> {
             mAuth.signOut();
             startActivity(new Intent(User_profile_Activity.this , MainActivity.class));
+        });
+
+
+        btnAdd.setOnClickListener( view -> {
+            Intent intent = new Intent(User_profile_Activity.this , NewRecordActivity.class);
+            startActivity(intent);
         });
     }
 }

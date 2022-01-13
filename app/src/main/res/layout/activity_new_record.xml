@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewRecordActivity">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/NewRecord_TV_BigTitle"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:text="Add Item"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="40dp"
+        android:textSize="80px"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/NewRecord_TV_titleName"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/NewRecord_TV_BigTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Title"
+        android:textSize="50px" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NewRecord_TF_input"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NewRecord_TV_titleName"
+        android:layout_marginLeft="20dp"
+        android:hint="name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/NewRecord_TV_SugarBe"
+        android:layout_width="145dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/NewRecord_TF_input"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Sugar before"
+        android:textSize="50px" />
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NewRecord_TF_SugarBeinput"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NewRecord_TV_SugarBe"
+        android:layout_marginLeft="20dp"
+        android:hint="Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="145dp"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/NewRecord_TV_SugarAfter"
+        android:layout_width="145dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/NewRecord_TF_input"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="20dp"
+        android:text="Sugar after"
+        android:textSize="50px" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NewRecord_TF_SuganAfter"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NewRecord_TV_SugarAfter"
+        android:layout_marginLeft="180dp"
+        android:hint="Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="145dp"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/NewRecord_TV_InsulinDose"
+        android:layout_width="145dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/NewRecord_TF_SugarBeinput"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Insulin dose"
+        android:textSize="50px" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NewRecord_TF_InsulinDose"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NewRecord_TV_InsulinDose"
+        android:layout_marginLeft="20dp"
+        android:hint="Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="145dp"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/NewRecord_TV_Wight"
+        android:layout_width="145dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/NewRecord_TF_InsulinDose"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Wight"
+        android:textSize="50px" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_item_WightInput"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NewRecord_TV_Wight"
+        android:layout_marginLeft="20dp"
+        android:hint="name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/NewRecord_TV_Hight"
+        android:layout_width="145dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/NewRecord_TF_InsulinDose"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="20dp"
+        android:text="Hight"
+        android:textSize="50px" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/NewRecord_TF_Hight"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NewRecord_TV_Hight"
+        android:layout_marginLeft="180dp"
+        android:hint="name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/NewRecord_BTN_add"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NewRecord_TF_Hight"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/purple_200"
+        android:text="Add" />
+
+
+
+</RelativeLayout>
