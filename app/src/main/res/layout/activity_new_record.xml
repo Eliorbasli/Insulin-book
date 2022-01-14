@@ -10,10 +10,10 @@
         android:id="@+id/NewRecord_TV_BigTitle"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:text="Add Item"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="40dp"
-        android:textSize="80px"/>
+        android:layout_marginTop="30dp"
+        android:text="Add Item"
+        android:textSize="80px" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/NewRecord_TV_titleName"
@@ -26,7 +26,7 @@
         android:textSize="50px" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/NewRecord_TF_input"
+        android:id="@+id/NewRecord_TF_name"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/NewRecord_TV_titleName"
@@ -42,7 +42,7 @@
         android:id="@+id/NewRecord_TV_SugarBe"
         android:layout_width="145dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/NewRecord_TF_input"
+        android:layout_below="@+id/NewRecord_TF_name"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="Sugar before"
@@ -68,7 +68,7 @@
         android:id="@+id/NewRecord_TV_SugarAfter"
         android:layout_width="145dp"
         android:layout_height="30dp"
-        android:layout_below="@+id/NewRecord_TF_input"
+        android:layout_below="@+id/NewRecord_TF_name"
         android:layout_marginLeft="180dp"
         android:layout_marginTop="20dp"
         android:text="Sugar after"
@@ -122,7 +122,7 @@
         android:textSize="50px" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_item_WightInput"
+        android:id="@+id/NewRecord_TF_Wight"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/NewRecord_TV_Wight"
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/NewRecord_BTN_add"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
