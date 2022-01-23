@@ -54,11 +54,11 @@ public class NewRecordActivity extends AppCompatActivity {
                 db = FirebaseFirestore.getInstance();
                                 // = tfSugarbefore.getText().toString();
                 String title = tfName.getEditText().getText().toString();
-                String SugarBefore = tfSugarbefore.getEditText().getText().toString();
-                String Sugarafter = tfSugarafter.getEditText().getText().toString();
-                String InsulinDose = tfInsulinDose.getEditText().getText().toString();
-                String Hight = tfHight.getEditText().getText().toString();
-                String Wight = tfWight.getEditText().getText().toString();
+                Integer SugarBefore = Integer.parseInt(tfSugarbefore.getEditText().getText().toString());
+                Integer Sugarafter = Integer.parseInt(tfSugarafter.getEditText().getText().toString());
+                Integer InsulinDose = Integer.parseInt(tfInsulinDose.getEditText().getText().toString());
+                Integer Hight = Integer.parseInt(tfHight.getEditText().getText().toString());
+                Integer Wight = Integer.parseInt(tfWight.getEditText().getText().toString());
 
                 Map<String, Object> item = new HashMap<>();
                 item.put("title", title);

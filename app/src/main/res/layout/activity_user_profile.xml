@@ -12,24 +12,60 @@
         android:layout_height="match_parent"
         android:layout_weight="100"
         android:gravity="right"
-        android:background="@color/teal_200">
+        android:background="@color/blue_700">
 
-        <ImageView
-            android:id="@+id/userImage"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            tools:src="@tools:sample/avatars" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editTextTextPersonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Search" />
+            <ImageView
+                android:id="@+id/userImage"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userImage"
+                android:layout_marginStart="55px"
+                android:background="#6FF9FF"
+                android:text="userName" />
+
+        </RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+
+
+    <TextView
+        android:id="@+id/userEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="userEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+         />
+
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Search"
+        android:inputType="textPersonName" />
+</RelativeLayout>
+
+
 
     </LinearLayout>
 
@@ -37,50 +73,52 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="12"
-        android:background="@color/purple_200">
+        android:background="@color/grey_300">
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:background="#FF5131"
-            android:layout_margin="20dp"
             android:id="@+id/RC_items"
-            />
-
-        <TextView
-            android:id="@+id/userName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/RC_items"
-            android:background="#6FF9FF"
-            android:text="userName" />
+            android:layout_height="475dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/white" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/userName"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/RC_items"-->
+<!--            android:background="#6FF9FF"-->
+
+<!--            android:text="userName" />-->
 
 
-        <TextView
-            android:id="@+id/userEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/userName"
-            android:layout_marginTop="28dp"
-            android:text="userEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintTop_toBottomOf="@+id/userName" />
+<!--        <TextView-->
+<!--            android:id="@+id/userEmail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/userName"-->
+<!--            android:layout_marginTop="28dp"-->
+<!--            android:text="userEmail"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.498"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/userName" />-->
 
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/RC_items"
             android:text="Logout"
-            android:layout_below="@+id/userEmail"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userEmail"
-            app:layout_constraintVertical_bias="0.35"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/RC_items"
+            app:layout_constraintVertical_bias="0.35" />
 
         <Button
             android:id="@+id/btnAdd"
@@ -92,55 +130,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userEmail"
             app:layout_constraintVertical_bias="0.35" />
 
 
     </RelativeLayout>
 
 
-    <!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
 
-<!--        android:layout_height="100dp"-->
-<!--        android:background="@color/purple_200">-->
-
-
-<!--    </RelativeLayout>-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/userName"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="108dp"-->
-<!--        android:text="userName"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/userImage" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/userEmail"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="28dp"-->
-<!--        android:text="userEmail"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/userName" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/btnLogout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/userEmail"-->
-<!--        app:layout_constraintVertical_bias="0.35" />-->
 
 
 
