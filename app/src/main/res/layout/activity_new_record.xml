@@ -49,7 +49,6 @@
         android:textSize="50px" />
 
 
-
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/NewRecord_TF_SugarBeinput"
         android:layout_width="150dp"
@@ -167,7 +166,6 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/purple_200"
         android:text="Add" />
-
 
 
 </RelativeLayout>

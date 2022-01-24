@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -36,7 +37,7 @@ public class User_profile_Activity extends AppCompatActivity {
     TextView    tvUserEmail;
     ImageView   userImageView;
     Button      btnSignOut;
-    Button btnAdd;
+    FloatingActionButton btnAdd;
 
     FirebaseAuth mAuth;
 
