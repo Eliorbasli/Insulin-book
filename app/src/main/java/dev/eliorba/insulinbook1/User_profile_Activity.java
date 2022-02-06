@@ -41,7 +41,7 @@ public class User_profile_Activity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     ArrayList<Food> foodArrayList;
     FoodAdapter foodAdapter;
     FirebaseFirestore db;
@@ -62,14 +62,15 @@ public class User_profile_Activity extends AppCompatActivity {
         btnAdd = findViewById(R.id.btnAdd);
 
         recyclerView = findViewById(R.id.RC_items);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this , LinearLayoutManager.VERTICAL , false));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        foodArrayList = new ArrayList<Food>();
 
-        foodAdapter = new FoodAdapter(User_profile_Activity.this , foodArrayList);
+        foodArrayList = new ArrayList<Food>();
+        foodAdapter = new FoodAdapter(this,User_profile_Activity.this , foodArrayList);
 
         recyclerView.setAdapter(foodAdapter);
 

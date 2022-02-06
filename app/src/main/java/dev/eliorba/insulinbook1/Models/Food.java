@@ -7,6 +7,7 @@ public class Food {
     private  int InsulinDose = 0;
     private  int Wight = 0;
     private  int Hight = 0;
+    private String Image = null;
 
 
     public Food() {
@@ -64,5 +65,13 @@ public class Food {
     public Food setHight(int hight) {
         this.Hight = hight;
         return this;
+    }
+
+    public String getImage(){
+        return Image;
+    }
+
+    public void setImage(String imageUrl){
+        Image = imageUrl;
     }
 }

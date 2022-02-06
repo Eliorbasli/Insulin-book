@@ -21,6 +21,7 @@
             <ImageView
                 android:id="@+id/userImage"
                 android:layout_width="wrap_content"
+                android:paddingLeft="20dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
@@ -42,23 +43,22 @@
     android:layout_height="wrap_content">
 
 
-
-
     <TextView
         android:id="@+id/userEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="2dp"
         android:text="userEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-         />
+        app:layout_constraintHorizontal_bias="0.498" />
 
 
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/userEmail"
         android:layout_weight="1"
         android:ems="10"
         android:hint="Search"
@@ -79,62 +79,27 @@
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="180dp"
-            android:layout_marginBottom="160dp"
-            android:src="@drawable/ic_launcher_foreground"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="70dp"
+            android:src="@drawable/ic_add_button"
             android:verticalScrollbarPosition="right" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RC_items"
             android:layout_width="match_parent"
-            android:layout_height="485dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_height="520dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="7dp"
             android:background="@color/white" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/userName"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/RC_items"-->
-<!--            android:background="#6FF9FF"-->
-
-<!--            android:text="userName" />-->
-
-
-<!--        <TextView-->
-<!--            android:id="@+id/userEmail"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/userName"-->
-<!--            android:layout_marginTop="28dp"-->
-<!--            android:text="userEmail"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.498"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/userName" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/btnAdd"-->
-<!--            android:layout_width="160dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_below="@+id/RC_items"-->
-<!--            android:layout_marginLeft="150dp"-->
-<!--            android:layout_marginRight="150dp"-->
-<!--            android:elevation="5dp"-->
-<!--            android:text="ADD"-->
-<!--            app:cornerRadius="15dp"-->
-<!--            app:elevation="5dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.498"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/RC_items"-->
-<!--            app:layout_constraintVertical_bias="0.35" />-->
 
         <Button
             android:id="@+id/btnLogout"

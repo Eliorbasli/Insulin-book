@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         RequestGoogleSignIn();
 
+
         btnSignIn.setOnClickListener(view -> {
             signIn();
         });
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
