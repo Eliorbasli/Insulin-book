@@ -190,17 +190,20 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/NewRecord_BTN_add"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/newRecord_PB"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="50dp"
-            android:backgroundTint="@color/purple_200"
-            android:gravity="center"
-            android:text="Add" />
+
+
+
+
+        <ImageView
+            android:id="@+id/newRecord_IMG"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_below="@+id/NewRecord_BTN_choose"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <ProgressBar
             android:id="@+id/newRecord_PB"
@@ -213,16 +216,29 @@
             android:layout_marginEnd="14dp"
             android:layout_marginBottom="14dp" />
 
-        <ImageView
-            android:id="@+id/newRecord_IMG"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:layout_below="@+id/NewRecord_BTN_choose"
-            android:layout_marginStart="20dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/NewRecord_BTN_add"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/newRecord_PB"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/purple_200"
+            android:gravity="center"
+            android:text="Add" />
+
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/NewRecored_slider"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewRecord_BTN_add"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:valueFrom="0.0"
+            android:valueTo="2.0"
+            android:stepSize="1.0"
+            android:value="1.0"/>
 
 
 

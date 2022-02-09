@@ -53,16 +53,22 @@
         app:layout_constraintHorizontal_bias="0.498" />
 
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/userProfile_searchView"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:layout_below="@+id/userEmail"
-        android:layout_weight="1"
-        android:ems="10"
-        android:hint="Search"
-        android:inputType="textPersonName" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        app:defaultQueryHint="Search"
+        app:queryHint="Search" />
+
+
 </RelativeLayout>
 
 

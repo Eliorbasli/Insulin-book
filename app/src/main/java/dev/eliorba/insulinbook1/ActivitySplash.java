@@ -6,7 +6,6 @@ import android.animation.Animator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
@@ -20,6 +19,7 @@ public class ActivitySplash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_splash);
 
         findView();
@@ -40,7 +40,7 @@ public class ActivitySplash extends AppCompatActivity {
     }
 
     private void animationDone(){
-        Intent intent = new Intent(this , MainActivity.class);
+        Intent intent = new Intent(this , LoginActivity.class);
         startActivity(intent);
         finish();
 

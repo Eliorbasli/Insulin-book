@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewRecordActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewUser_TV_Profile"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="30dp"
+            android:text="Profile"
+            android:textSize="90px" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewRecord_TV_gender"
+            android:layout_width="220dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewUser_TV_Profile"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Gender"
+            android:textSize="50px" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/NewRecord_TV_gender"
+            android:layout_marginLeft="14dp"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_pirates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male" />
+            <RadioButton android:id="@+id/radio_ninjas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female" />
+
+        </RadioGroup>
+
+
+<!--        <com.google.android.material.textview.MaterialTextView-->
+<!--            android:id="@+id/NewRecord_TV_SugarBe"-->
+<!--            android:layout_width="145dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_below="@+id/NewRecord_TF_name"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="Sugar before"-->
+<!--            android:textSize="50px" />-->
+
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/NewRecord_TF_SugarBeinput"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@+id/NewRecord_TV_SugarBe"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:hint="Number">-->
+
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="145dp"-->
+<!--                android:layout_height="wrap_content" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.slider.Slider;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -49,6 +51,7 @@ public class NewRecordActivity extends AppCompatActivity {
     TextInputLayout tfWight;
     MaterialButton btnNewRecord;
     MaterialButton btnChoose;
+    Slider slider;
     ImageView mImageView;
     ProgressBar Pb;
     FirebaseFirestore db;
@@ -78,6 +81,11 @@ public class NewRecordActivity extends AppCompatActivity {
         btnChoose       = findViewById(R.id.NewRecord_BTN_choose);
         mImageView      = findViewById(R.id.newRecord_IMG);
         Pb              = findViewById(R.id.newRecord_PB);
+        slider          = findViewById(R.id.NewRecored_slider);
+
+
+        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
+        String userIdPre = preferences.getString("userId" , "");
 
         db = FirebaseFirestore.getInstance();
 
@@ -112,6 +120,10 @@ public class NewRecordActivity extends AppCompatActivity {
         Integer Hight       = Integer.parseInt(tfHight.getEditText().getText().toString());
         Integer Wight       = Integer.parseInt(tfWight.getEditText().getText().toString());
 
+        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
+        String userId = preferences.getString("userId" , "");
+
+
         if(mImageUri != null){
 
 
@@ -127,7 +139,7 @@ public class NewRecordActivity extends AppCompatActivity {
         item.put("Hight", Hight);
         item.put("Wight", Wight);
         item.put("Image" ,URL);
-
+        item.put("userId" , userId );
 
 
 
