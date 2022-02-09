@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,7 +20,7 @@
             android:textSize="90px" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/NewRecord_TV_gender"
+            android:id="@+id/NewUser_TV_gender"
             android:layout_width="220dp"
             android:layout_height="30dp"
             android:layout_below="@+id/NewUser_TV_Profile"
@@ -31,46 +30,145 @@
             android:textSize="50px" />
 
         <RadioGroup
+            android:id="@+id/NewUser_RG_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/NewRecord_TV_gender"
+            android:layout_below="@id/NewUser_TV_gender"
             android:layout_marginLeft="14dp"
             android:orientation="vertical">
-            <RadioButton android:id="@+id/radio_pirates"
+
+            <RadioButton
+                android:id="@+id/radio_Male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Male" />
-            <RadioButton android:id="@+id/radio_ninjas"
+
+            <RadioButton
+                android:id="@+id/radio_Female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Female" />
 
+            <RadioButton
+                android:id="@+id/Prefernottosay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prefer not to say" />
+
         </RadioGroup>
 
 
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/NewRecord_TV_SugarBe"-->
-<!--            android:layout_width="145dp"-->
-<!--            android:layout_height="30dp"-->
-<!--            android:layout_below="@+id/NewRecord_TF_name"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="Sugar before"-->
-<!--            android:textSize="50px" />-->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewUser_TV_height"
+            android:layout_width="145dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewUser_RG_gender"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Height"
+            android:textSize="50px" />
 
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/NewRecord_TF_SugarBeinput"-->
-<!--            android:layout_width="150dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/NewRecord_TV_SugarBe"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            android:hint="Number">-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/NewUser_TF_height"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewUser_TV_height"
+            android:layout_marginLeft="20dp"
+            android:hint="Number">
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="145dp"-->
-<!--                android:layout_height="wrap_content" />-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="145dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewUser_TV_weight"
+            android:layout_width="145dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewUser_TF_height"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Weight"
+            android:textSize="50px" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/NewUser_TF_weight"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewUser_TV_weight"
+            android:layout_marginLeft="20dp"
+            android:hint="Number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="145dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewUser_TV_longInsulin"
+            android:layout_width="145dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewUser_TF_weight"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Long Insulin"
+            android:textSize="50px" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/NewUser_TF_longInsulin"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewUser_TV_longInsulin"
+            android:layout_marginLeft="20dp"
+            android:hint="Number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="145dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewUser_TV_Age"
+            android:layout_width="145dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewUser_TF_longInsulin"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Age"
+            android:textSize="50px" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/NewUser_TF_age"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewUser_TV_Age"
+            android:layout_marginLeft="20dp"
+            android:hint="Number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="145dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/NewUser_BTN_add"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewUser_TF_age"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/purple_200"
+            android:gravity="center"
+            android:text="Add" />
 
 
     </RelativeLayout>

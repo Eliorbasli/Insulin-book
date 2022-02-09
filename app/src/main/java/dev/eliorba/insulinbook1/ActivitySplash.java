@@ -22,6 +22,8 @@ public class ActivitySplash extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_splash);
 
+
+
         findView();
 
 

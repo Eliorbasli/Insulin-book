@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import dev.eliorba.insulinbook1.Adapters.FoodAdapter;
 import dev.eliorba.insulinbook1.Models.Food;
+import dev.eliorba.insulinbook1.Utils.DataManager;
 
 public class User_profile_Activity extends AppCompatActivity{
 
@@ -49,15 +50,14 @@ public class User_profile_Activity extends AppCompatActivity{
 
     FirebaseFirestore db;
     SearchView searchView2;
-
-
+    DataManager dataManager ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         getSupportActionBar().hide();
-
+        dataManager = new DataManager();
         findView();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this , LinearLayoutManager.VERTICAL , false));
@@ -70,6 +70,7 @@ public class User_profile_Activity extends AppCompatActivity{
         foodArrayList1 = new ArrayList<Food>();
 
         //read from firebase database and save in foodArrayList
+        //dataManager.EventChangeListener(foodArrayList);
         EventChangeListener();
 
         initMenu();

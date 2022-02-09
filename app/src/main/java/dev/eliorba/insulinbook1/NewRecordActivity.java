@@ -39,6 +39,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import dev.eliorba.insulinbook1.Models.Food;
+import dev.eliorba.insulinbook1.Utils.DataManager;
 
 
 public class NewRecordActivity extends AppCompatActivity {
@@ -65,6 +66,8 @@ public class NewRecordActivity extends AppCompatActivity {
     private StorageReference  mStorageRef;
     private DatabaseReference mDatabaseRef;
 
+    DataManager dataManager = new DataManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,12 +86,10 @@ public class NewRecordActivity extends AppCompatActivity {
         Pb              = findViewById(R.id.newRecord_PB);
         slider          = findViewById(R.id.NewRecored_slider);
 
-
-        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
-        String userIdPre = preferences.getString("userId" , "");
+//        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
+//        String userIdPre = preferences.getString("userId" , "");
 
         db = FirebaseFirestore.getInstance();
-
         mStorageRef     = FirebaseStorage.getInstance().getReference("uploads");
         mDatabaseRef    = FirebaseDatabase.getInstance().getReference("uploads");
 
@@ -105,68 +106,80 @@ public class NewRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                uploadImageToStorageDB();
+                //uploadImageToStorageDB();
+                Food food = new Food()
+                        .setTitle(tfName.getEditText().getText().toString())
+                        .setSugarBefore(Integer.parseInt(tfSugarbefore.getEditText().getText().toString()))
+                        .setSugarAfter(Integer.parseInt(tfSugarafter.getEditText().getText().toString()))
+                        .setInsulinDose(Integer.parseInt(tfInsulinDose.getEditText().getText().toString()))
+                        .setHight(Integer.parseInt(tfHight.getEditText().getText().toString()))
+                        .setWight(Integer.parseInt(tfWight.getEditText().getText().toString()));
+
+
+                dataManager.uploadImageToStorageDB(NewRecordActivity.this , mImageUri , Pb , mImageView , food);
             }
         });
     }
 
-
-    private void uploadToFireStoreDB() {
-
-        String title        = tfName.getEditText().getText().toString();
-        Integer SugarBefore = Integer.parseInt(tfSugarbefore.getEditText().getText().toString());
-        Integer Sugarafter  = Integer.parseInt(tfSugarafter.getEditText().getText().toString());
-        Integer InsulinDose = Integer.parseInt(tfInsulinDose.getEditText().getText().toString());
-        Integer Hight       = Integer.parseInt(tfHight.getEditText().getText().toString());
-        Integer Wight       = Integer.parseInt(tfWight.getEditText().getText().toString());
-
-        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
-        String userId = preferences.getString("userId" , "");
-
-
-        if(mImageUri != null){
-
-
-        }else{
-            Toast.makeText(this, "No Photo selected", Toast.LENGTH_SHORT).show();
-        }
-
-        Map<String, Object> item = new HashMap<>();
-        item.put("title", title);
-        item.put("Sugarbefore", SugarBefore);
-        item.put("Sugarafter", Sugarafter);
-        item.put("InsulinDose", InsulinDose);
-        item.put("Hight", Hight);
-        item.put("Wight", Wight);
-        item.put("Image" ,URL);
-        item.put("userId" , userId );
-
-
-
-        db.collection("items")
-                .add(item)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(NewRecordActivity.this, "successful", Toast.LENGTH_SHORT);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(NewRecordActivity.this, "failed..", Toast.LENGTH_SHORT);
-            }
-        });
-
-    }
-
-
+//    private void uploadToFireStoreDB(Food food1) {
+//
+//        Food food = new Food()
+//                .setTitle(tfName.getEditText().getText().toString())
+//                .setSugarBefore(Integer.parseInt(tfSugarbefore.getEditText().getText().toString()))
+//                .setSugarAfter(Integer.parseInt(tfSugarafter.getEditText().getText().toString()))
+//                .setInsulinDose(Integer.parseInt(tfInsulinDose.getEditText().getText().toString()))
+//                .setHight(Integer.parseInt(tfHight.getEditText().getText().toString()))
+//                .setWight(Integer.parseInt(tfWight.getEditText().getText().toString()));
+//
+////        String title        = tfName.getEditText().getText().toString();
+////        Integer SugarBefore = Integer.parseInt(tfSugarbefore.getEditText().getText().toString());
+////        Integer Sugarafter  = Integer.parseInt(tfSugarafter.getEditText().getText().toString());
+////        Integer InsulinDose = Integer.parseInt(tfInsulinDose.getEditText().getText().toString());
+////        Integer Hight       = Integer.parseInt(tfHight.getEditText().getText().toString());
+////        Integer Wight       = Integer.parseInt(tfWight.getEditText().getText().toString());
+//
+//        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
+//        String userId = preferences.getString("userId" , "");
+//
+//        if(mImageUri != null){
+//
+//
+//        }else{
+//            Toast.makeText(this, "No Photo selected", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        Map<String, Object> item = new HashMap<>();
+//        item.put("title", food.getTitle());
+//        item.put("Sugarbefore", food.getSugarBefore());
+//        item.put("Sugarafter", food.getSugarAfter());
+//        item.put("InsulinDose", food.getInsulinDose());
+//        item.put("Hight", food.getHight());
+//        item.put("Wight", food.getWight());
+//        item.put("Image" ,dataManager.getURL());
+//        item.put("userId" , userId );
+//
+//
+//
+//        db.collection("items")
+//                .add(item)
+//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Toast.makeText(NewRecordActivity.this, "successful", Toast.LENGTH_SHORT);
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(NewRecordActivity.this, "failed..", Toast.LENGTH_SHORT);
+//            }
+//        });
+//
+//    }
     private void openFileChoose() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
-
-
     }
 
     @Override
@@ -180,64 +193,57 @@ public class NewRecordActivity extends AppCompatActivity {
         }
     }
 
-
     //upload only the image and file name to storage firebase in /image folder and get URL
     //file name is current date and time.
-    public void uploadImageToStorageDB () {
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
-        Date now = new Date();
-        String fileName = formatter.format(now);
-
-        storageReference = FirebaseStorage.getInstance().getReference("images/" + fileName);
-
-        storageReference.putFile(mImageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                Pb.setProgress(0);
-                            }
-                        },500);
-
-                        mImageView.setImageURI(null);
-
-                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Toast.makeText(NewRecordActivity.this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
-                                downloadUrl = uri; // uri = URL = HTTP to image in storage
-                                URL = uri.toString();
-                                uploadToFireStoreDB();
-                            }
-                        });
-//                                .addOnFailureListener(new OnFailureListener() {
+//    public void uploadImageToStorageDB() {
+//
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
+//        Date now = new Date();
+//        String fileName = formatter.format(now);
+//
+//        storageReference = FirebaseStorage.getInstance().getReference("images/" + fileName);
+//
+//        storageReference.putFile(mImageUri)
+//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                        Handler handler = new Handler();
+//                        handler.postDelayed(new Runnable() {
 //                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(NewRecordActivity.this, "Failed to uploaded", Toast.LENGTH_SHORT).show();
+//                            public void run() {
+//                                Pb.setProgress(0);
+//                            }
+//                        },500);
+//
+//                        mImageView.setImageURI(null);
+//
+//                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Override
+//                            public void onSuccess(Uri uri) {
+//                                Toast.makeText(NewRecordActivity.this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
+//                                downloadUrl = uri; // uri = URL = HTTP to image in storage
+//                                URL = uri.toString();
+//                                uploadToFireStoreDB();
 //                            }
 //                        });
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                Toast.makeText(NewRecordActivity.this, "Failed to uploaded", Toast.LENGTH_SHORT).show();
-
-            }
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                double progress = (100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount() );
-                Pb. setProgress((int) progress);
-            }
-        });
-
-    }
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//
+//                Toast.makeText(NewRecordActivity.this, "Failed to uploaded", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//            @Override
+//            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+//                double progress = (100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount() );
+//                Pb. setProgress((int) progress);
+//            }
+//        });
+//
+//    }
 
     }
 

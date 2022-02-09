@@ -1,7 +1,7 @@
 package dev.eliorba.insulinbook1.Models;
 
 public class User {
-    double id;
+    String id;
     int age;
     int height;
     int wight ;
@@ -12,7 +12,7 @@ public class User {
     }
 
 
-    public User(double id ,int age , int height , int wight , int longInsulin , String gender){
+    public User(String id ,int age , int height , int wight , int longInsulin , String gender){
         this.id = id;
         this.age = age;
         this.height = height;
@@ -22,11 +22,11 @@ public class User {
     }
 
 
-    public double getId() {
+    public String getId() {
         return id;
     }
 
-    public User setId(double id) {
+    public User setId(String id) {
         this.id = id;
         return this;
     }

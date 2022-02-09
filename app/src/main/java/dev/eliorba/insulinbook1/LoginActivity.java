@@ -39,6 +39,7 @@ import java.util.Map;
 
 import dev.eliorba.insulinbook1.Models.Food;
 import dev.eliorba.insulinbook1.Models.User;
+import dev.eliorba.insulinbook1.Utils.DataManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
 
-    ArrayList<String> UserIdList;
+    ArrayList<String> UserList;
     String AccountID = "";
 
     @Override
@@ -56,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
+
+        DataManager dataManager = new DataManager();
 
         setContentView(R.layout.activity_main);
 
@@ -99,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 //Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-                firebaseAuthWithGoogle(account.getIdToken());
+                firebaseAuthWithGoogle(account.getIdToken() , account.getId());
 
                 SharedPreferences.Editor editor = getApplicationContext()
                         .getSharedPreferences("MyPrefs" , MODE_PRIVATE)
@@ -124,14 +127,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //if auth google success go to next activity
-    private void firebaseAuthWithGoogle(String idToken) {
+    private void firebaseAuthWithGoogle(String idToken , String userid) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            checkNewUser();
+                            checkNewUser(userid);
 //                            Intent intent = new Intent(LoginActivity.this , User_profile_Activity.class);
 //                            startActivity(intent);
 //                            finish();
@@ -144,75 +147,47 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void checkNewUser() {
+    private void checkNewUser(String userid) {
 
-        if(1 == 1  ) {   // list conatin userId
+        //UsersFromDB();
 
+        if(1 == 0 ) {   // list conatin userId
             //if(UserIdList.contains(AccountID))
             Intent intent = new Intent(LoginActivity.this , User_profile_Activity.class);
             startActivity(intent);
             finish();
         }
+        //if is new user go to NewActivity and add user to DB;
         else{
-            uploadToFireStoreDB();
-
             Intent intent = new Intent(LoginActivity.this , newUserActivity.class);
             startActivity(intent);
 
         }
     }
 
-//
-//    private void readUserList(){
-//        db.collection("users").orderBy("Userid", Query.Direction.ASCENDING)
-//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//
-//                        if(error != null){
-//
-//                            Log.e("Firestore error" , error.getMessage());
-//                            return;
-//                        }
-//                        for (DocumentChange dc : value.getDocumentChanges()){
-//
-//                            if(dc.getType() == DocumentChange.Type.ADDED){
-//
-//                                UserIdList.add(dc.getDocument().toObject(User.class).getId());
-//                            }
-//                            //foodAdapter.notifyDataSetChanged();
-//                        }
-//                    }
-//                });
-//    }
 
+    private void UsersFromDB() {
 
-
-    private void uploadToFireStoreDB() {
-
-
-
-        Map<String, Object> item = new HashMap<>();
-        item.put("UserId", 4444);
-        item.put("UserName", "check2");
-        item.put("LongInsulin", 3);
-        item.put("Hight", 172);
-        item.put("Wight", 77);
-
-        db.collection("users")
-                .add(item)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection("users").orderBy("title", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(LoginActivity.this, "successful", Toast.LENGTH_SHORT);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(LoginActivity.this, "failed..", Toast.LENGTH_SHORT);
-            }
-        });
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
+                        if(error != null){
+
+                            Log.e("Firestore error" , error.getMessage());
+                            return;
+                        }
+                        for (DocumentChange dc : value.getDocumentChanges()){
+
+                            if(dc.getType() == DocumentChange.Type.ADDED){
+
+                                UserList.add(dc.getDocument().toString());
+                            }
+
+                        }
+                    }
+                });
     }
 
 

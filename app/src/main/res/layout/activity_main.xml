@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@drawable/ic_launcher_background"
     tools:context=".LoginActivity">
 
 
     <ImageView
         android:id="@+id/Login_Image_logo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:background="@color/white" />
+        android:background="@drawable/insulinbooklogo" />
 
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btnSignIn"
-        android:layout_below="@+id/Login_Image_logo"
-        android:layout_marginTop="90dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/Login_Image_logo"
+        android:layout_marginTop="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
