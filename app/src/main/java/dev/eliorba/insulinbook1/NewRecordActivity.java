@@ -48,25 +48,21 @@ public class NewRecordActivity extends AppCompatActivity {
     TextInputLayout tfSugarbefore;
     TextInputLayout tfSugarafter;
     TextInputLayout tfInsulinDose;
+    TextInputLayout tfLongInsulin;
     TextInputLayout tfHight;
     TextInputLayout tfWight;
     MaterialButton btnNewRecord;
     MaterialButton btnChoose;
-    Slider slider;
     ImageView mImageView;
     ProgressBar Pb;
     FirebaseFirestore db;
-    StorageReference storageReference;
-    private static String URL ;
+    //private static String URL ;
 
     private static final int PICK_IMAGE_REQUEST = 1;
     Uri mImageUri;
-    Uri downloadUrl;
-
     private StorageReference  mStorageRef;
     private DatabaseReference mDatabaseRef;
-
-    DataManager dataManager = new DataManager();
+    private DataManager dataManager = new DataManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,16 +74,13 @@ public class NewRecordActivity extends AppCompatActivity {
         tfSugarbefore   = findViewById(R.id.NewRecord_TF_SugarBeinput);
         tfSugarafter    = findViewById(R.id.NewRecord_TF_SuganAfter);
         tfInsulinDose   = findViewById(R.id.NewRecord_TF_InsulinDose);
+        tfLongInsulin   = findViewById(R.id.NewRecord_TF_LongInsulin);
         tfHight         = findViewById(R.id.NewRecord_TF_Hight);
         tfWight         = findViewById(R.id.NewRecord_TF_Wight);
         btnNewRecord    = findViewById(R.id.NewRecord_BTN_add);
         btnChoose       = findViewById(R.id.NewRecord_BTN_choose);
         mImageView      = findViewById(R.id.newRecord_IMG);
         Pb              = findViewById(R.id.newRecord_PB);
-        slider          = findViewById(R.id.NewRecored_slider);
-
-//        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
-//        String userIdPre = preferences.getString("userId" , "");
 
         db = FirebaseFirestore.getInstance();
         mStorageRef     = FirebaseStorage.getInstance().getReference("uploads");
@@ -96,9 +89,7 @@ public class NewRecordActivity extends AppCompatActivity {
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 openFileChoose();
-
             }
         });
 
@@ -106,75 +97,28 @@ public class NewRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //uploadImageToStorageDB();
+                SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
+                String userName = preferences.getString("username" , " ") ;
                 Food food = new Food()
                         .setTitle(tfName.getEditText().getText().toString())
                         .setSugarBefore(Integer.parseInt(tfSugarbefore.getEditText().getText().toString()))
                         .setSugarAfter(Integer.parseInt(tfSugarafter.getEditText().getText().toString()))
                         .setInsulinDose(Integer.parseInt(tfInsulinDose.getEditText().getText().toString()))
+                        .setLongInsulin(Integer.parseInt(tfLongInsulin.getEditText().getText().toString()))
                         .setHight(Integer.parseInt(tfHight.getEditText().getText().toString()))
-                        .setWight(Integer.parseInt(tfWight.getEditText().getText().toString()));
-
-
-                dataManager.uploadImageToStorageDB(NewRecordActivity.this , mImageUri , Pb , mImageView , food);
+                        .setWight(Integer.parseInt(tfWight.getEditText().getText().toString()))
+                        .setUserName(userName);
+                if(mImageUri != null)
+                {
+                    dataManager.uploadImageToStorageDB(NewRecordActivity.this , mImageUri , Pb , mImageView , food);
+                }
+                else{
+                    Toast.makeText(NewRecordActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-//    private void uploadToFireStoreDB(Food food1) {
-//
-//        Food food = new Food()
-//                .setTitle(tfName.getEditText().getText().toString())
-//                .setSugarBefore(Integer.parseInt(tfSugarbefore.getEditText().getText().toString()))
-//                .setSugarAfter(Integer.parseInt(tfSugarafter.getEditText().getText().toString()))
-//                .setInsulinDose(Integer.parseInt(tfInsulinDose.getEditText().getText().toString()))
-//                .setHight(Integer.parseInt(tfHight.getEditText().getText().toString()))
-//                .setWight(Integer.parseInt(tfWight.getEditText().getText().toString()));
-//
-////        String title        = tfName.getEditText().getText().toString();
-////        Integer SugarBefore = Integer.parseInt(tfSugarbefore.getEditText().getText().toString());
-////        Integer Sugarafter  = Integer.parseInt(tfSugarafter.getEditText().getText().toString());
-////        Integer InsulinDose = Integer.parseInt(tfInsulinDose.getEditText().getText().toString());
-////        Integer Hight       = Integer.parseInt(tfHight.getEditText().getText().toString());
-////        Integer Wight       = Integer.parseInt(tfWight.getEditText().getText().toString());
-//
-//        SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
-//        String userId = preferences.getString("userId" , "");
-//
-//        if(mImageUri != null){
-//
-//
-//        }else{
-//            Toast.makeText(this, "No Photo selected", Toast.LENGTH_SHORT).show();
-//        }
-//
-//        Map<String, Object> item = new HashMap<>();
-//        item.put("title", food.getTitle());
-//        item.put("Sugarbefore", food.getSugarBefore());
-//        item.put("Sugarafter", food.getSugarAfter());
-//        item.put("InsulinDose", food.getInsulinDose());
-//        item.put("Hight", food.getHight());
-//        item.put("Wight", food.getWight());
-//        item.put("Image" ,dataManager.getURL());
-//        item.put("userId" , userId );
-//
-//
-//
-//        db.collection("items")
-//                .add(item)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Toast.makeText(NewRecordActivity.this, "successful", Toast.LENGTH_SHORT);
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(NewRecordActivity.this, "failed..", Toast.LENGTH_SHORT);
-//            }
-//        });
-//
-//    }
     private void openFileChoose() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -187,63 +131,11 @@ public class NewRecordActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-
             mImageUri = data.getData();
             mImageView.setImageURI(mImageUri);
         }
     }
 
-    //upload only the image and file name to storage firebase in /image folder and get URL
-    //file name is current date and time.
-//    public void uploadImageToStorageDB() {
-//
-//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.CANADA);
-//        Date now = new Date();
-//        String fileName = formatter.format(now);
-//
-//        storageReference = FirebaseStorage.getInstance().getReference("images/" + fileName);
-//
-//        storageReference.putFile(mImageUri)
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
-//                        Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                Pb.setProgress(0);
-//                            }
-//                        },500);
-//
-//                        mImageView.setImageURI(null);
-//
-//                        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                            @Override
-//                            public void onSuccess(Uri uri) {
-//                                Toast.makeText(NewRecordActivity.this, "Successfully Uploaded", Toast.LENGTH_SHORT).show();
-//                                downloadUrl = uri; // uri = URL = HTTP to image in storage
-//                                URL = uri.toString();
-//                                uploadToFireStoreDB();
-//                            }
-//                        });
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//
-//                Toast.makeText(NewRecordActivity.this, "Failed to uploaded", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//            @Override
-//            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                double progress = (100 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount() );
-//                Pb. setProgress((int) progress);
-//            }
-//        });
-//
-//    }
 
     }
 

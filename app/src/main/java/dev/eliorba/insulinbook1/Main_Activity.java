@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,26 +32,22 @@ import dev.eliorba.insulinbook1.Adapters.FoodAdapter;
 import dev.eliorba.insulinbook1.Models.Food;
 import dev.eliorba.insulinbook1.Utils.DataManager;
 
-public class User_profile_Activity extends AppCompatActivity{
-
+public class Main_Activity extends AppCompatActivity{
 
     TextView    tvUserName;
-    TextView    tvUserEmail;
     ImageView   userImageView;
     Button      btnSignOut;
     FloatingActionButton btnAdd;
-    androidx.appcompat.widget.SearchView SearchView;
+    //androidx.appcompat.widget.SearchView SearchView;
     FirebaseAuth mAuth;
 
     private RecyclerView recyclerView;
 
     ArrayList<Food> foodArrayList;
-    ArrayList<Food> foodArrayList1;
-
+    ArrayList<Food> foodArrayListForSearch;
     FoodAdapter foodAdapter;
-
     FirebaseFirestore db;
-    SearchView searchView2;
+    SearchView searchView;
     DataManager dataManager ;
 
     @Override
@@ -62,57 +60,55 @@ public class User_profile_Activity extends AppCompatActivity{
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this , LinearLayoutManager.VERTICAL , false));
         recyclerView.setHasFixedSize(true);
-
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         foodArrayList = new ArrayList<Food>();
-        foodArrayList1 = new ArrayList<Food>();
+        foodArrayListForSearch = new ArrayList<Food>();
 
         //read from firebase database and save in foodArrayList
-        //dataManager.EventChangeListener(foodArrayList);
         EventChangeListener();
 
         initMenu();
-        foodAdapter = new FoodAdapter(this,User_profile_Activity.this , foodArrayList);
+        foodAdapter = new FoodAdapter(this, Main_Activity.this , foodArrayList);
         recyclerView.setAdapter(foodAdapter);
-
 
         btnSignOut.setOnClickListener(view -> {
             mAuth.signOut();
-            startActivity(new Intent(User_profile_Activity.this , LoginActivity.class));
+            startActivity(new Intent(Main_Activity.this , LoginActivity.class));
         });
 
         btnAdd.setOnClickListener( view -> {
-            Intent intent = new Intent(User_profile_Activity.this , NewRecordActivity.class);
+            Intent intent = new Intent(Main_Activity.this , NewRecordActivity.class);
             startActivity(intent);
         });
 
         // Search Option, if search is empty show all items else show all item contain the chars in searchView
-        searchView2.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                foodAdapter = new FoodAdapter(User_profile_Activity.this,User_profile_Activity.this , foodArrayList);
+                foodAdapter = new FoodAdapter(Main_Activity.this, Main_Activity.this , foodArrayList);
                 recyclerView.setAdapter(foodAdapter);
                 return false;
             }
 
+
+            //this function check of chars in search filed exist in foodArrayList, if yes , insert them to foodArrayListforSearch
+            //and update the recycleView of result.
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(!searchView2.toString().isEmpty()){
-                    foodArrayList1.clear();
+                if(!searchView.toString().isEmpty()){
+                    foodArrayListForSearch.clear();
                     for(int i = 0 ; i < foodArrayList.size() ; i++){
-                        //.getTitle().toLowerCase().contains(searchView.toString().toLowerCase())
-                        if (foodArrayList.get(i).getTitle().toLowerCase().contains(searchView2.getQuery().toString().toLowerCase())){
-                            foodArrayList1.add(foodArrayList.get(i));
+                        if (foodArrayList.get(i).getTitle().toLowerCase().contains(searchView.getQuery().toString().toLowerCase())){
+                            foodArrayListForSearch.add(foodArrayList.get(i));
                         }
-                        foodAdapter = new FoodAdapter(User_profile_Activity.this,User_profile_Activity.this , foodArrayList1);
+                        foodAdapter = new FoodAdapter(Main_Activity.this, Main_Activity.this , foodArrayListForSearch);
                         recyclerView.setAdapter(foodAdapter);
                     }
-
                 }
                 else{
-                    foodAdapter = new FoodAdapter(User_profile_Activity.this,User_profile_Activity.this , foodArrayList);
+                    foodAdapter = new FoodAdapter(Main_Activity.this, Main_Activity.this , foodArrayList);
                     recyclerView.setAdapter(foodAdapter);
                 }
                 return false;
@@ -126,39 +122,29 @@ public class User_profile_Activity extends AppCompatActivity{
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs" , MODE_PRIVATE);
         String userName = preferences.getString("username" , " ") ;
-        String userEmail = preferences.getString("userEmail" , " ") ;
         String userPhotoUrl = preferences.getString("userPhoto" , " ") ;
-        String userId = preferences.getString("userId" , "");
-
         tvUserName.setText(userName);
-        tvUserEmail.setText(userEmail);
 
         Glide.with(this).load(userPhotoUrl).into(userImageView);
     }
 
-
     private void findView(){
         tvUserName      = findViewById(R.id.userName);
-        tvUserEmail     = findViewById(R.id.userEmail);
         userImageView   = findViewById(R.id.userImage);
         btnSignOut      = findViewById(R.id.btnLogout);
         btnAdd          = findViewById(R.id.btnAdd);
         recyclerView    = findViewById(R.id.RC_items);
-        searchView2      = findViewById(R.id.userProfile_searchView);
+        searchView = findViewById(R.id.userProfile_searchView);
 
     }
 
-
     //read all items from firebase database , all item save in foodArrayList
     private void EventChangeListener() {
-
         db.collection("items").orderBy("title", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-
                         if(error != null){
-
                             Log.e("Firestore error" , error.getMessage());
                             return;
                         }

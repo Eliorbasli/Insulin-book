@@ -16,13 +16,15 @@
         android:layout_marginTop="80dp"
         android:background="@drawable/insulinbooklogo" />
 
-
     <com.google.android.gms.common.SignInButton
         android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Login_Image_logo"
-        android:layout_marginTop="70dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />

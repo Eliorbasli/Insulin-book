@@ -7,15 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +19,7 @@ import java.util.Collection;
 import dev.eliorba.insulinbook1.Models.Food;
 import dev.eliorba.insulinbook1.R;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> implements Filterable {
+public class FoodAdapter extends RecyclerView.Adapter<MyViewHolder> implements Filterable {
 
     Context context;
     private Activity activity;
@@ -36,10 +32,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
         this.foodArrayList = foodArrayList;
         this.foodArrayListAll = new ArrayList<>(foodArrayList);
     }
-
     @NonNull
     @Override
-    public FoodAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.list_food_item, parent , false);
 
@@ -47,12 +42,16 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Food food = foodArrayList.get(position);
-        holder.foodTitle.setText(food.getTitle());
+        holder.LBL_foodTitle.setText(food.getTitle());
         holder.InsulinDose.setText(String.valueOf(food.getInsulinDose()));
+        holder.LongInsulin.setText(String.valueOf(food.getLongInsulin()));
         holder.sugarBefore.setText(String.valueOf(food.getSugarBefore()));
         holder.sugarAfter.setText(String.valueOf(food.getSugarAfter()));
+        holder.LBL_uploadBY.setText("Upload by " +String.valueOf(food.getUserName()));
+        holder.LBL_Hight.setText(String.valueOf(food.getHight()));
+        holder.LBL_Wight.setText(String.valueOf(food.getWight()));
 
         //Image
         Glide.with(context).load(food.getImage()).into(holder.FoodImage);
@@ -63,9 +62,6 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     public int getItemCount() {
         return foodArrayList.size();
     }
-
-
-
 
     @Override
     public Filter getFilter() {
@@ -94,10 +90,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
             FilterResults filterResults = new FilterResults();
             filterResults.values = filteredList;
             return filterResults;
-
-
         };
-
 
         //runs on a ui thread
         @Override
@@ -109,27 +102,5 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.MyViewHolder> 
     };
 
 
-
-
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-
-        MaterialTextView  foodTitle ;
-        MaterialTextView sugarBefore;
-        MaterialTextView sugarAfter;
-        MaterialTextView InsulinDose;
-        AppCompatImageView FoodImage;
-
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            foodTitle = itemView.findViewById(R.id.Food_LBL_Title);
-            sugarBefore = itemView.findViewById(R.id.Food_LBL_SugarBefore);
-            sugarAfter = itemView.findViewById(R.id.Food_LBL_SugarAfter);
-            InsulinDose = itemView.findViewById(R.id.Food_LBL_Insulin);
-            FoodImage = itemView.findViewById(R.id.Food_IMG_image);
-        }
-
-
-    }
 }
 

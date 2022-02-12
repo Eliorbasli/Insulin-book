@@ -8,7 +8,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="220dp"
             android:layout_margin="12dp"
             app:cardCornerRadius="24dp"
             app:cardElevation="14dp">
@@ -22,7 +22,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="8dp"
                     app:cardCornerRadius="24dp">
 <!--                    android:elevation="18dp"-->
 <!--                    app:cardElevation="18dp">-->
@@ -53,15 +53,29 @@
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
                             android:layout_toEndOf="@+id/Food_IMG_image"
-                            android:maxLines="2"
-                            android:minLines="2"
+                            android:maxLines="1"
+                            android:minLines="1"
                             android:text="FOOD item"
                             android:textSize="18sp"
                             android:textStyle="bold|italic" />
 
                         <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Food_LBL_Insulin2"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Food_LBL_Title"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toEndOf="@+id/Food_IMG_image"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:text="Short Insulin:"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/Food_LBL_Insulin"
-                            android:layout_width="147dp"
+                            android:layout_width="20dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/Food_LBL_Title"
                             android:layout_marginStart="4dp"
@@ -73,69 +87,197 @@
                             android:text="Insulin dose" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/Food_LBL_Insulin2"
-                            android:layout_width="100dp"
+                            android:id="@+id/Food_LBL_LongInsulin"
+                            android:layout_width="65dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/Food_LBL_Title"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
-                            android:layout_toEndOf="@+id/Food_IMG_image"
+                            android:layout_toEndOf="@+id/Food_LBL_Insulin"
+                            android:maxLines="2"
+                            android:minLines="2"
+                            android:text="Long Insulin:"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Food_LBL_LongInsulin222"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Food_LBL_Title"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toEndOf="@+id/Food_LBL_LongInsulin"
                             android:maxLines="2"
                             android:minLines="2"
                             android:text="Insulin dose" />
 
+
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/Food_LBL_SugarBefore2"
-                            android:layout_width="100dp"
+                            android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/Food_LBL_Insulin"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
                             android:layout_toEndOf="@+id/Food_IMG_image"
-                            android:maxLines="2"
-                            android:minLines="2"
-                            android:text="Sugar Before" />
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Before:"
+                            android:textStyle="bold" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/Food_LBL_SugarBefore"
-                            android:layout_width="100dp"
+                            android:layout_width="20dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/Food_LBL_Insulin"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
                             android:layout_toEndOf="@+id/Food_LBL_SugarBefore2"
-                            android:maxLines="2"
-                            android:minLines="2"
+                            android:maxLines="1"
+                            android:minLines="1"
                             android:text="Sugar Before" />
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/Food_LBL_SugarAfter2"
-                            android:layout_width="100dp"
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Food_LBL_LongInsulin"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toEndOf="@+id/Food_LBL_SugarBefore"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="After:"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Food_LBL_SugarAfter"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Food_LBL_LongInsulin222"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toEndOf="@+id/Food_LBL_SugarAfter2"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Sugar After" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Food_LBL_Hight"
+                            android:layout_width="60dp"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/Food_LBL_SugarBefore2"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
                             android:layout_toEndOf="@+id/Food_IMG_image"
-                            android:maxLines="2"
-                            android:minLines="2"
-                            android:text="Sugar After" />
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Hight:"
+                            android:textStyle="bold" />
 
                         <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/Food_LBL_SugarAfter"
-                            android:layout_width="100dp"
+                            android:id="@+id/Food_LBL_Hight2"
+                            android:layout_width="20dp"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/Food_LBL_SugarBefore2"
+                            android:layout_below="@+id/Food_LBL_SugarAfter2"
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginEnd="4dp"
-                            android:layout_toEndOf="@+id/Food_LBL_SugarAfter2"
-                            android:maxLines="2"
-                            android:minLines="2"
-                            android:text="Sugar After" />
+                            android:layout_toEndOf="@+id/Food_LBL_Hight"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Hight num" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Food_LBL_Wight"
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Food_LBL_SugarAfter2"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toEndOf="@+id/Food_LBL_Hight2"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Wight:"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Food_LBL_Wight2"
+                            android:layout_width="20dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Food_LBL_SugarAfter2"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toEndOf="@+id/Food_LBL_Wight"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="Hight num" />
+
+<!--                        <com.google.android.material.textview.MaterialTextView-->
+<!--                            android:id="@+id/Food_LBL_Age"-->
+<!--                            android:layout_width="60dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@+id/Food_LBL_Hight"-->
+<!--                            android:layout_marginStart="4dp"-->
+<!--                            android:layout_marginTop="4dp"-->
+<!--                            android:layout_marginEnd="4dp"-->
+<!--                            android:layout_toEndOf="@+id/Food_IMG_image"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:minLines="1"-->
+<!--                            android:text="Age:"-->
+<!--                            android:textStyle="bold" />-->
+
+
+<!--                        <com.google.android.material.textview.MaterialTextView-->
+<!--                            android:id="@+id/Food_LBL_Age2"-->
+<!--                            android:layout_width="20dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@+id/Food_LBL_Hight2"-->
+<!--                            android:layout_marginStart="4dp"-->
+<!--                            android:layout_marginTop="4dp"-->
+<!--                            android:layout_marginEnd="4dp"-->
+<!--                            android:layout_toEndOf="@+id/Food_LBL_Age"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:minLines="1"-->
+<!--                            android:text="Hight num" />-->
+
+<!--                        <com.google.android.material.textview.MaterialTextView-->
+<!--                            android:id="@+id/Food_LBL_Gender"-->
+<!--                            android:layout_width="60dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@+id/Food_LBL_Hight"-->
+<!--                            android:layout_marginStart="4dp"-->
+<!--                            android:layout_marginTop="4dp"-->
+<!--                            android:layout_marginEnd="4dp"-->
+<!--                            android:layout_toEndOf="@+id/Food_LBL_Hight2"-->
+<!--                            android:maxLines="1"-->
+<!--                            android:minLines="1"-->
+<!--                            android:text="Gender:"-->
+<!--                            android:textStyle="bold" />-->
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/Food_LBL_uploadBY"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/Food_LBL_Hight"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_toEndOf="@+id/Food_IMG_image"
+                            android:maxLines="1"
+                            android:minLines="1"
+                            android:text="upload By"
+                            android:textStyle="bold" />
+
 
                     </RelativeLayout>
 

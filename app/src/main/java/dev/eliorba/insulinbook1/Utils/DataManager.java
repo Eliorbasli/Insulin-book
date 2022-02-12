@@ -1,14 +1,15 @@
 package dev.eliorba.insulinbook1.Utils;
 
+
 import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -17,23 +18,46 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import dev.eliorba.insulinbook1.LoginActivity;
 import dev.eliorba.insulinbook1.Models.Food;
-import dev.eliorba.insulinbook1.Models.User;
-import dev.eliorba.insulinbook1.User_profile_Activity;
-import dev.eliorba.insulinbook1.newUserActivity;
 
 public class DataManager {
 
     StorageReference storageReference;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private ArrayList<String> UserIDList = new ArrayList<String>();
     private static String URL ;
+
+    //read all items from firebase database , all item save in foodArrayList
+//    public void EventChangeListener(ArrayList foodArrayList , Adapter foodAdapter) {
+//        db.collection("items").orderBy("title", Query.Direction.ASCENDING)
+//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//
+//                        if(error != null){
+//
+//                            Log.e("Firestore error" , error.getMessage());
+//                            return;
+//                        }
+//                        for (DocumentChange dc : value.getDocumentChanges()){
+//
+//                            if(dc.getType() == DocumentChange.Type.ADDED){
+//
+//                                foodArrayList.add(dc.getDocument().toObject(Food.class));
+//                            }
+//                            //foodAdapter.notifyDataSetChanged();
+//                        }
+//                    }
+//                });
+//    }
 
     public void uploadImageToStorageDB(Activity activity ,Uri mImageUri, ProgressBar Pb , ImageView mImageView , Food food) {
 
@@ -42,6 +66,8 @@ public class DataManager {
         String fileName = formatter.format(now);
 
         storageReference = FirebaseStorage.getInstance().getReference("images/" + fileName);
+
+
 
         storageReference.putFile(mImageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -85,12 +111,10 @@ public class DataManager {
     }
 
 
-    private void uploadToFireStoreDB(Activity activity , Food food , Uri mImageUri) {
-
+    public void uploadToFireStoreDB(Activity activity , Food food , Uri mImageUri) {
         db = FirebaseFirestore.getInstance();
 
         if(mImageUri != null){
-
 
         }else{
             Toast.makeText(activity, "No Photo selected", Toast.LENGTH_SHORT).show();
@@ -101,12 +125,11 @@ public class DataManager {
         item.put("Sugarbefore", food.getSugarBefore());
         item.put("Sugarafter", food.getSugarAfter());
         item.put("InsulinDose", food.getInsulinDose());
+        item.put("LongInsulin" , food.getLongInsulin());
         item.put("Hight", food.getHight());
         item.put("Wight", food.getWight());
+        item.put("UserName" , food.getUserName());
         item.put("Image" ,URL);
-      // item.put("userId" , userId );
-
-
 
         db.collection("items")
                 .add(item)
@@ -123,56 +146,6 @@ public class DataManager {
         });
 
     }
-
-
-//    public void uploadUserToDB(Activity activity , User user) {
-//
-//        db = FirebaseFirestore.getInstance();
-//
-//
-//        String userId = preferences.getString("userId" , "");
-//
-//        if(user == null) {
-//            Toast.makeText(activity, "No user selected", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        Map<String, Object> item = new HashMap<>();
-//        item.put("UserId", user.getId());
-//        item.put("Age", user.getAge());
-//        item.put("Gender", user.getGender());
-//        item.put("LongInsulin", user.getLongInsulin());
-//        item.put("Hight", user.getHeight());
-//        item.put("Wight", user.getWight());
-//
-//        // item.put("userId" , userId );
-//
-//
-//
-//        db.collection("users")
-//                .add(item)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Toast.makeText(activity, "successful", Toast.LENGTH_SHORT);
-//
-//                        Intent intent = new Intent(activity , User_profile_Activity.class);
-//                        activity.startActivity(intent);
-//
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//            @Override
-//            public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(activity, "failed..", Toast.LENGTH_SHORT);
-//            }
-//        });
-//
-//    }
-
-
-
-
-
 
     public String getURL(){
         return URL;

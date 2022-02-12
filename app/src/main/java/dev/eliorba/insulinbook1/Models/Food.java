@@ -5,8 +5,20 @@ public class Food {
     private  int Sugarbefore = 0;
     private  int Sugarafter = 0;
     private  int InsulinDose = 0;
+    private int LongInsulin = 0 ;
+
+    public int getLongInsulin() {
+        return LongInsulin;
+    }
+
+    public Food setLongInsulin(int longInsulin) {
+        LongInsulin = longInsulin;
+        return this;
+    }
+
     private  int Wight = 0;
     private  int Hight = 0;
+    private String UserName = null;
     private String Image = null;
 
 
@@ -15,6 +27,15 @@ public class Food {
 
     public String getTitle() {
         return title;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public Food setUserName(String userName) {
+        UserName = userName;
+        return this;
     }
 
     public Food setTitle(String title) {

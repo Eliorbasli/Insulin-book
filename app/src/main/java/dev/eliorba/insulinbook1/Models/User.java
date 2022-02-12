@@ -1,78 +1,78 @@
 package dev.eliorba.insulinbook1.Models;
 
 public class User {
-    String id;
-    int age;
-    int height;
-    int wight ;
-    int longInsulin;
-    String gender;
+    String UserId;
+    int Age;
+    int Height;
+    int Wight ;
+    int LongInsulin;
+    String Gender;
 
     public User(){
     }
 
 
-    public User(String id ,int age , int height , int wight , int longInsulin , String gender){
-        this.id = id;
-        this.age = age;
-        this.height = height;
-        this.wight = wight;
-        this.longInsulin = longInsulin;
-        this.gender = gender;
+    public User(String UserId ,int Age , int Height , int Wight , int LongInsulin , String Gender){
+        this.UserId = UserId;
+        this.Age = Age;
+        this.Height = Height;
+        this.Wight = Wight;
+        this.LongInsulin = LongInsulin;
+        this.Gender = Gender;
     }
 
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return UserId;
     }
 
     public User setId(String id) {
-        this.id = id;
+        this.UserId = id;
         return this;
     }
 
     public int getAge() {
-        return age;
+        return Age;
     }
 
-    public User setAge(int age) {
-        this.age = age;
+    public User setAge(int Age) {
+        this.Age = Age;
         return this;
     }
 
     public int getHeight() {
-        return height;
+        return Height;
     }
 
     public User setHeight(int height) {
-        this.height = height;
+        this.Height = Height;
         return this;
     }
 
     public int getWight() {
-        return wight;
+        return Wight;
     }
 
-    public User setWight(int wight) {
-        this.wight = wight;
+    public User setWight(int Wight) {
+        this.Wight = Wight;
         return this;
     }
 
     public int getLongInsulin() {
-        return longInsulin;
+        return LongInsulin;
     }
 
-    public User setLongInsulin(int longInsulin) {
-        this.longInsulin = longInsulin;
+    public User setLongInsulin(int LongInsulin) {
+        this.LongInsulin = LongInsulin;
         return this;
     }
 
     public String getGender() {
-        return gender;
+        return Gender;
     }
 
-    public User setGender(String gender) {
-        this.gender = gender;
+    public User setGender(String Gender) {
+        this.Gender = Gender;
         return this;
     }
 }

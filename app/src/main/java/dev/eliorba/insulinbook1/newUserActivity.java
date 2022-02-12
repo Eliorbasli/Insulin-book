@@ -3,7 +3,6 @@ package dev.eliorba.insulinbook1;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,9 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import dev.eliorba.insulinbook1.Models.Food;
 import dev.eliorba.insulinbook1.Models.User;
-import dev.eliorba.insulinbook1.Utils.DataManager;
 
 public class newUserActivity extends AppCompatActivity {
 
@@ -38,8 +35,6 @@ public class newUserActivity extends AppCompatActivity {
 
     RadioGroup rgGender;
     RadioButton selectedRadioButton;
-   // DataManager dataManager = new DataManager();
-
 
 
 
@@ -58,19 +53,16 @@ public class newUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 User user = new User().setAge(Integer.parseInt(tfAge.getEditText().getText().toString()))
                         .setHeight(Integer.parseInt(tfHeight.getEditText().getText().toString()))
                         .setWight(Integer.parseInt(tfWight.getEditText().getText().toString()))
-                        .setLongInsulin(Integer.parseInt(tfLongInsulin.getEditText().getText().toString()));
+                        .setLongInsulin(Integer.parseInt(tfLongInsulin.getEditText().getText().toString()))
+                        .setId(userId);
 
-                //dataManager.uploadUserToDB(newUserActivity.this , user);
                 uploadUserToDB(user);
             }
         });
     }
-
     private void findView() {
         tfWight =       findViewById(R.id.NewUser_TF_weight);
         tfHeight =      findViewById(R.id.NewUser_TF_height);
@@ -81,13 +73,9 @@ public class newUserActivity extends AppCompatActivity {
 
     }
 
-
-
     public void uploadUserToDB(User user) {
 
         db = FirebaseFirestore.getInstance();
-
-
 
         if(user == null) {
             Toast.makeText(newUserActivity.this, "No user selected", Toast.LENGTH_SHORT).show();
@@ -95,16 +83,12 @@ public class newUserActivity extends AppCompatActivity {
         }
 
         Map<String, Object> item = new HashMap<>();
-        item.put("UserId", user.getId());
+        item.put("UserId", user.getUserId());
         item.put("Age", user.getAge());
         item.put("Gender", user.getGender());
         item.put("LongInsulin", user.getLongInsulin());
         item.put("Hight", user.getHeight());
         item.put("Wight", user.getWight());
-
-        // item.put("userId" , userId );
-
-
 
         db.collection("users")
                 .add(item)
@@ -113,7 +97,7 @@ public class newUserActivity extends AppCompatActivity {
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(newUserActivity.this, "successful", Toast.LENGTH_SHORT);
 
-                        Intent intent = new Intent(newUserActivity.this , User_profile_Activity.class);
+                        Intent intent = new Intent(newUserActivity.this , Main_Activity.class);
                         startActivity(intent);
 
                     }

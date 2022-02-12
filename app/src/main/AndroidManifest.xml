@@ -21,7 +21,7 @@
             android:name=".NewRecordActivity"
             android:exported="false" />
         <activity
-            android:name=".User_profile_Activity"
+            android:name=".Main_Activity"
             android:exported="false" />
         <activity
             android:name=".ActivitySplash"

@@ -15,9 +15,6 @@
         android:src="@drawable/ic_launcher_background"
         />
 
-
-
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         app:lottie_autoPlay="true"

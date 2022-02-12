@@ -18,28 +18,20 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import dev.eliorba.insulinbook1.Models.Food;
 import dev.eliorba.insulinbook1.Models.User;
-import dev.eliorba.insulinbook1.Utils.DataManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -49,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
 
-    ArrayList<String> UserList;
+    private ArrayList<String> UserIDList = new ArrayList<String>();
     String AccountID = "";
 
     @Override
@@ -57,11 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getSupportActionBar().hide();
-
-        DataManager dataManager = new DataManager();
-
         setContentView(R.layout.activity_main);
 
+        //UserIDList = new ArrayList<String>();
         btnSignIn = findViewById(R.id.btnSignIn);
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -71,12 +61,12 @@ public class LoginActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(view -> {
             signIn();
         });
+
+//        UsersFromDB();
+//
     }
 
-
-
-
-    private void RequestGoogleSignIn(){
+    private void RequestGoogleSignIn() {
         GoogleSignInOptions gso;
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -101,22 +91,20 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                //Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-                firebaseAuthWithGoogle(account.getIdToken() , account.getId());
-
-                SharedPreferences.Editor editor = getApplicationContext()
-                        .getSharedPreferences("MyPrefs" , MODE_PRIVATE)
-                        .edit();
-                editor.putString("username" ,account.getDisplayName());
-                editor.putString("userEmail" , account.getEmail());
-                editor.putString("userId" , account.getId());
-
-                Toast.makeText(LoginActivity.this, account.getId(), Toast.LENGTH_SHORT).show();
+                firebaseAuthWithGoogle(account.getIdToken(), account.getId());
 
                 AccountID = account.getId();
+                SharedPreferences.Editor editor = getApplicationContext()
+                        .getSharedPreferences("MyPrefs", MODE_PRIVATE)
+                        .edit();
+                editor.putString("username", account.getDisplayName());
+                editor.putString("userEmail", account.getEmail());
+                editor.putString("userId", account.getId());
 
+                //check if user exist
+                UsersFromDB();
 
-                editor.putString("userPhoto" , account.getPhotoUrl().toString());
+                editor.putString("userPhoto", account.getPhotoUrl().toString());
                 editor.apply();
 
             } catch (ApiException e) {
@@ -127,17 +115,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     //if auth google success go to next activity
-    private void firebaseAuthWithGoogle(String idToken , String userid) {
+    private void firebaseAuthWithGoogle(String idToken, String userid) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            checkNewUser(userid);
-//                            Intent intent = new Intent(LoginActivity.this , User_profile_Activity.class);
-//                            startActivity(intent);
-//                            finish();
 
                         } else {
 
@@ -147,47 +131,54 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void checkNewUser(String userid) {
-
-        //UsersFromDB();
-
-        if(1 == 0 ) {   // list conatin userId
-            //if(UserIdList.contains(AccountID))
-            Intent intent = new Intent(LoginActivity.this , User_profile_Activity.class);
-            startActivity(intent);
-            finish();
-        }
-        //if is new user go to NewActivity and add user to DB;
-        else{
-            Intent intent = new Intent(LoginActivity.this , newUserActivity.class);
-            startActivity(intent);
-
-        }
-    }
 
 
     private void UsersFromDB() {
-
-        db.collection("users").orderBy("title", Query.Direction.ASCENDING)
+        db.collection("users")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
 
-                        if(error != null){
-
-                            Log.e("Firestore error" , error.getMessage());
+                        if (error != null) {
+                            Log.e("Firestore error", error.getMessage());
                             return;
                         }
-                        for (DocumentChange dc : value.getDocumentChanges()){
+                        for (DocumentChange dc : value.getDocumentChanges()) {
 
-                            if(dc.getType() == DocumentChange.Type.ADDED){
-
-                                UserList.add(dc.getDocument().toString());
+                            if (dc.getType() == DocumentChange.Type.ADDED) {
+                                UserIDList.add(dc.getDocument().toObject(User.class).getUserId().toString());
                             }
-
                         }
+                        checkNewUser(AccountID);
+                        Log.d("UserID", UserIDList.toString());
                     }
                 });
+    }
+
+
+
+    private void checkNewUser(String userid) {
+        //if is exist user open Main_Activity
+        Log.d("checkUser", UserIDList.toString());
+
+        for (String str : UserIDList) {
+            Intent intent;
+            if (!str.equals(userid) ) {
+                Log.d("checkUser", "User exist open User_profile  "+ userid);
+                intent = new Intent(LoginActivity.this, Main_Activity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+            else {
+                Log.d("checkUser", "User dosen't exist open User_profile333  " + userid);
+                intent = new Intent(LoginActivity.this, newUserActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+
+        }
     }
 
 

@@ -69,15 +69,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/NewRecord_TV_SugarAfter"
-        android:layout_width="145dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/NewRecord_TF_name"
-        android:layout_marginLeft="180dp"
-        android:layout_marginTop="20dp"
-        android:text="Sugar after"
-        android:textSize="50px" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewRecord_TV_SugarAfter"
+            android:layout_width="145dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewRecord_TF_name"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="20dp"
+            android:text="Sugar after"
+            android:textSize="50px" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/NewRecord_TF_SuganAfter"
@@ -93,15 +93,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/NewRecord_TV_InsulinDose"
-        android:layout_width="145dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/NewRecord_TF_SugarBeinput"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Insulin dose"
-        android:textSize="50px" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewRecord_TV_InsulinDose"
+            android:layout_width="145dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewRecord_TF_SugarBeinput"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Insulin dose"
+            android:textSize="50px" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/NewRecord_TF_InsulinDose"
@@ -115,6 +115,55 @@
             android:layout_width="145dp"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/NewRecord_TV_LongInsulin"
+            android:layout_width="145dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/NewRecord_TF_SuganAfter"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="20dp"
+            android:text="Long insulin"
+            android:textSize="50px" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/NewRecord_TF_LongInsulin"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NewRecord_TV_LongInsulin"
+            android:layout_marginLeft="180dp"
+            android:hint="Number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="145dp"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/NewRecord_TV_Wight"
@@ -226,16 +275,6 @@
             android:text="Add" />
 
 
-        <com.google.android.material.slider.Slider
-            android:id="@+id/NewRecored_slider"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/NewRecord_BTN_add"
-            android:layout_marginTop="20dp"
-            android:valueFrom="0.0"
-            android:valueTo="2.0"
-            android:stepSize="1.0"
-            android:value="1.0"/>
 
 
 
