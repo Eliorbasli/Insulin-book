@@ -1,5 +1,10 @@
 # InsulinBook
+
+InsulinBook is community 
 Final project in Android mobile applications course , the app is intended for diabetics
+
+The app is a social network for diabetics,
+which is designed to share information about meals and how much insulin has been injected for a finished dose
 
 
 some deatures : 
